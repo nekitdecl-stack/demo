@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>стоматология  — Все площадки</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'Inter', 'system-ui', 'sans-serif'],
+            inter: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    /* ==========================================================================
+       БАЗОВЫЕ ПЕРЕМЕННЫЕ И СИСТЕМА ТЕМ (СВЕТЛЫЙ ПРЕМИУМ / ГРАФИТ И ЗОЛОТО)
+       ========================================================================== */
+    :root {
+      --bg-page: linear-gradient(165deg, #eef1f8 0%, #e4eaf6 48%, #dfe6f5 100%);
+      --bg-orb-1: rgba(148, 174, 232, 0.35);
+      --bg-orb-2: rgba(196, 181, 253, 0.25);
+
+      --text-header-title: #141720;
+      --text-header-sub: #545d72;
+      --badge-bg: rgba(255, 255, 255, 0.72);
+      --badge-border: rgba(255, 255, 255, 0.9);
+      --badge-text: #2a3142;
+
+      --emblem-bg: #181a20;
+      --emblem-border: rgba(255, 255, 255, 0.14);
+      --emblem-stroke: #ffffff;
+      --emblem-shadow: 0 14px 28px -8px rgba(18, 22, 34, 0.32);
+
+      --card-bg: #181a20;
+      --card-bg-hover: #1f222a;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-shadow: 0 10px 26px -10px rgba(16, 22, 38, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+      --card-title: #ffffff;
+      --card-sub: #9ea5b5;
+      --card-chevron: rgba(255, 255, 255, 0.38);
+
+      --featured-bg: linear-gradient(135deg, #1b1e26 0%, #14161c 100%);
+      --featured-border: rgba(255, 214, 130, 0.24);
+      --featured-glow: 0 14px 32px -10px rgba(20, 24, 38, 0.42), 0 0 0 1px rgba(255, 214, 130, 0.12);
+      --accent-color: #f6c453;
+      --accent-soft: rgba(246, 196, 83, 0.14);
+
+      --icon-box-bg: rgba(255, 255, 255, 0.08);
+      --icon-box-color: #ffffff;
+
+      --info-hours-bg: rgba(255, 255, 255, 0.72);
+      --info-hours-border: rgba(255, 255, 255, 0.92);
+      --info-hours-label: #646e84;
+      --info-hours-value: #161923;
+      --info-hours-icon-bg: rgba(24, 26, 32, 0.07);
+      --info-hours-icon: #262b38;
+
+      --info-phone-bg: #181a20;
+      --info-phone-border: rgba(255, 255, 255, 0.08);
+      --info-phone-label: #9ea5b5;
+      --info-phone-value: #ffffff;
+
+      --footer-brand: rgba(42, 49, 66, 0.45);
+
+      --modal-bg: #181a20;
+      --modal-border: rgba(255, 255, 255, 0.1);
+      --modal-surface: rgba(255, 255, 255, 0.06);
+      --modal-text: #ffffff;
+      --modal-muted: #9ea5b5;
+      --cta-bg: #ffffff;
+      --cta-text: #14161c;
+    }
+
+    body[data-theme="gold"] {
+      --bg-page: radial-gradient(circle at 50% 0%, #1d1f26 0%, #121316 55%, #0d0e11 100%);
+      --bg-orb-1: rgba(212, 180, 124, 0.14);
+      --bg-orb-2: rgba(180, 142, 78, 0.08);
+
+      --text-header-title: #f7f4ed;
+      --text-header-sub: #9e9b93;
+      --badge-bg: rgba(28, 30, 36, 0.85);
+      --badge-border: rgba(212, 180, 124, 0.32);
+      --badge-text: #e3cc9f;
+
+      --emblem-bg: linear-gradient(145deg, #21232b 0%, #15161b 100%);
+      --emblem-border: rgba(212, 180, 124, 0.48);
+      --emblem-stroke: #dfc08a;
+      --emblem-shadow: 0 14px 32px -8px rgba(0, 0, 0, 0.65), 0 0 22px rgba(212, 180, 124, 0.12);
+
+      --card-bg: #1c1e24;
+      --card-bg-hover: #23262e;
+      --card-border: rgba(212, 180, 124, 0.22);
+      --card-shadow: 0 10px 26px -10px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(212, 180, 124, 0.12);
+      --card-title: #f7f4ed;
+      --card-sub: #9c988e;
+      --card-chevron: rgba(212, 180, 124, 0.55);
+
+      --featured-bg: linear-gradient(135deg, #24262e 0%, #181a20 100%);
+      --featured-border: rgba(212, 180, 124, 0.55);
+      --featured-glow: 0 14px 34px -10px rgba(0, 0, 0, 0.7), 0 0 24px -6px rgba(212, 180, 124, 0.22);
+      --accent-color: #d4b47c;
+      --accent-soft: rgba(212, 180, 124, 0.14);
+
+      --icon-box-bg: rgba(212, 180, 124, 0.11);
+      --icon-box-color: #dfc08a;
+
+      --info-hours-bg: #1c1e24;
+      --info-hours-border: rgba(212, 180, 124, 0.22);
+      --info-hours-label: #9c988e;
+      --info-hours-value: #f7f4ed;
+      --info-hours-icon-bg: rgba(212, 180, 124, 0.11);
+      --info-hours-icon: #dfc08a;
+
+      --info-phone-bg: #1c1e24;
+      --info-phone-border: rgba(212, 180, 124, 0.28);
+      --info-phone-label: #9c988e;
+      --info-phone-value: #f7f4ed;
+
+      --footer-brand: rgba(212, 180, 124, 0.42);
+
+      --modal-bg: #191b20;
+      --modal-border: rgba(212, 180, 124, 0.34);
+      --modal-surface: rgba(212, 180, 124, 0.08);
+      --modal-text: #f7f4ed;
+      --modal-muted: #a49f94;
+      --cta-bg: linear-gradient(135deg, #e2c58f 0%, #c6a063 100%);
+      --cta-text: #141519;
+    }
+
+    * {
+      -webkit-tap-highlight-color: transparent;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg-page);
+      background-attachment: fixed;
+      overflow-x: hidden;
+      transition: background 0.35s ease;
+    }
+
+    /* Декоративные мягкие световые пятна на фоне */
+    .ambient-orb {
+      position: fixed;
+      border-radius: 9999px;
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 0;
+      transition: background 0.4s ease;
+    }
+    .ambient-orb-1 {
+      width: 300px;
+      height: 300px;
+      top: -90px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-orb-1);
+    }
+    .ambient-orb-2 {
+      width: 260px;
+      height: 260px;
+      bottom: 40px;
+      right: -80px;
+      background: var(--bg-orb-2);
+    }
+
+    /* Стили карточек с тактильной микро-анимацией */
+    .nfc-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      box-shadow: var(--card-shadow);
+      border-radius: 16px;
+      transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1),
+                  background 0.2s ease,
+                  border-color 0.2s ease,
+                  box-shadow 0.2s ease;
+    }
+    .nfc-card:hover {
+      background: var(--card-bg-hover);
+    }
+    .nfc-card:active {
+      transform: scale(0.975);
+    }
+
+    .nfc-card-featured {
+      background: var(--featured-bg);
+      border: 1px solid var(--featured-border);
+      box-shadow: var(--featured-glow);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+    }
+    .nfc-card-featured::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 12% 50%, var(--accent-soft) 0%, transparent 62%);
+      pointer-events: none;
+    }
+    .nfc-card-featured:active {
+      transform: scale(0.975);
+    }
+
+    .info-hours-card {
+      background: var(--info-hours-bg);
+      border: 1px solid var(--info-hours-border);
+      border-radius: 16px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .info-phone-card {
+      background: var(--info-phone-bg);
+      border: 1px solid var(--info-phone-border);
+      box-shadow: var(--card-shadow);
+      border-radius: 16px;
+      transition: transform 0.16s ease, background 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Эмблема в шапке */
+    .emblem-badge {
+      background: var(--emblem-bg);
+      border: 1px solid var(--emblem-border);
+      box-shadow: var(--emblem-shadow);
+    }
+
+    /* Модальные окна Bottom-Sheet */
+    .sheet-backdrop {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .sheet-backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .sheet-panel {
+      transform: translateY(100%);
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+      background: var(--modal-bg);
+      border-top: 1px solid var(--modal-border);
+      color: var(--modal-text);
+    }
+    .sheet-backdrop.open .sheet-panel {
+      transform: translateY(0);
+    }
+
+    /* Плавный кастомный скроллбар для панели конструктора */
+    .drawer-scroll::-webkit-scrollbar {
+      width: 5px;
+    }
+    .drawer-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .drawer-scroll::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 9999px;
+    }
+
+    /* Контейнер QR-кода (белая подложка для идеального сканирования камерой) */
+    #wifiQrBox img,
+    #wifiQrBox canvas {
+      margin: 0 auto;
+      display: block;
+      border-radius: 8px;
+    }
+
+    /* Тост-уведомление */
+    .toast-pill {
+      transform: translate(-50%, 24px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+    }
+    .toast-pill.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    /* Анимация появления карточек при загрузке */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-up {
+      animation: fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+  </style>
+</head>
+<body data-theme="gold" class="antialiased selection:bg-amber-300/30">
+  <div class="ambient-orb ambient-orb-1"></div>
+  <div class="ambient-orb ambient-orb-2"></div>
+
+  <div class="relative z-10 min-h-screen w-full flex flex-col items-center justify-start sm:py-8 sm:px-4">
+    <main class="w-full max-w-[430px] px-4 pt-7 pb-10 flex flex-col gap-3">
+
+      <header class="flex flex-col items-center text-center mb-2 animate-fade-up">
+        <div class="emblem-badge w-16 h-16 rounded-2xl flex items-center justify-center mb-3.5">
+          <svg width="36" height="36" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <path d="M9 34C14.5 31.5 19.5 14 24 14C28.5 14 33.5 31.5 39 34" stroke="var(--emblem-stroke)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M16.5 30.5C19.5 28.5 21.8 22.5 24 22.5C26.2 22.5 28.5 28.5 31.5 30.5" stroke="var(--emblem-stroke)" stroke-opacity="0.45" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </div>
+        <h1 id="uiBusinessName" class="text-[22px] font-extrabold tracking-[0.06em] uppercase leading-tight" style="color: var(--text-header-title);"></h1>
+        <p id="uiSubtitle" class="mt-1.5 text-[13.5px] font-medium leading-snug max-w-[310px]" style="color: var(--text-header-sub);"></p>
+        <div id="uiTagWrapper" class="mt-3 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11.5px] font-semibold tracking-wide backdrop-blur-md"
+             style="background: var(--badge-bg); border: 1px solid var(--badge-border); color: var(--badge-text);">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span id="uiStatusTag"></span>
+        </div>
+      </header>
+
+      <button id="btnReviewCard" type="button" class="nfc-card-featured w-full p-4 flex items-center gap-3.5 text-left cursor-pointer animate-fade-up" style="animation-delay: 0.05s;">
+        <div class="relative z-10 w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style="background: var(--accent-soft); border: 1px solid var(--featured-border);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2.75L14.78 8.38L21 9.29L16.5 13.67L17.56 19.86L12 16.94L6.44 19.86L7.5 13.67L3 9.29L9.22 8.38L12 2.75Z" stroke="var(--accent-color)" stroke-width="1.9" stroke-linejoin="round" fill="var(--accent-soft)" />
+          </svg>
+        </div>
+        <div class="relative z-10 flex-1 min-w-0">
+          <div class="text-[15.5px] font-bold leading-tight" style="color: var(--card-title);">Оставить отзыв</div>
+          <div id="uiReviewSubtitle" class="text-[12.5px] mt-0.5 truncate" style="color: var(--card-sub);"></div>
+        </div>
+        <svg class="relative z-10 shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M9 6L15 12L9 18" stroke="var(--card-chevron)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <div id="promoCard" class="nfc-card w-full px-4 py-3 flex items-center gap-3 animate-fade-up" style="animation-delay: 0.09s;">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style="background: var(--accent-soft);">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="8" width="18" height="4" rx="1" stroke="var(--accent-color)" stroke-width="1.8" />
+            <path d="M12 8V21" stroke="var(--accent-color)" stroke-width="1.8" />
+            <path d="M19 12V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V12" stroke="var(--accent-color)" stroke-width="1.8" />
+            <path d="M7.5 8C6.12 8 5 6.88 5 5.5C5 4.12 6.12 3 7.5 3C9.6 3 12 6 12 8C12 6 14.4 3 16.5 3C17.88 3 19 4.12 19 5.5C19 6.88 17.88 8 16.5 8" stroke="var(--accent-color)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <p id="uiPromoText" class="text-[13px] font-medium leading-snug" style="color: var(--card-title);"></p>
+      </div>
+
+      <div id="actionGrid" class="grid grid-cols-2 gap-3 animate-fade-up" style="animation-delay: 0.13s;">
+        <button id="btnWifiCard" type="button" class="nfc-card p-4 flex flex-col items-center justify-center text-center min-h-[108px] cursor-pointer">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-2.5" style="background: var(--icon-box-bg); color: var(--icon-box-color);">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12.55C8.86 9.15 15.14 9.15 19 12.55" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
+              <path d="M8.53 16.11C10.46 14.41 13.54 14.41 15.47 16.11" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
+              <path d="M1.42 9C7.28 3.85 16.72 3.85 22.58 9" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-opacity="0.55" />
+              <circle cx="12" cy="19.5" r="1.4" fill="currentColor" />
+            </svg>
+          </div>
+          <span class="text-[14px] font-bold leading-tight" style="color: var(--card-title);">Гостевой Wi-Fi</span>
+          <span class="text-[11.5px] mt-1" style="color: var(--card-sub);">Подключиться</span>
+        </button>
+
+        <a id="btnActionCard" href="#" target="_blank" rel="noopener noreferrer" class="nfc-card p-4 flex flex-col items-center justify-center text-center min-h-[108px] no-underline">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center mb-2.5" style="background: var(--icon-box-bg); color: var(--icon-box-color);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4.5" width="18" height="16.5" rx="3" stroke="currentColor" stroke-width="1.9" />
+              <path d="M3 9.5H21" stroke="currentColor" stroke-width="1.9" />
+              <path d="M8 2.5V6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
+              <path d="M16 2.5V6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
+              <path d="M12 13V17M10 15H14" stroke="var(--accent-color)" stroke-width="1.9" stroke-linecap="round" />
+            </svg>
+          </div>
+          <span id="uiActionTitle" class="text-[14px] font-bold leading-tight" style="color: var(--card-title);"></span>
+          <span id="uiActionSubtitle" class="text-[11.5px] mt-1" style="color: var(--card-sub);"></span>
+        </a>
+      </div>
+
+      <section id="socialLinksStack" class="flex flex-col gap-2.5 animate-fade-up" style="animation-delay: 0.17s;"></section>
+
+      <section class="flex flex-col gap-2.5 mt-1 animate-fade-up" style="animation-delay: 0.21s;">
+        <div id="hoursCard" class="info-hours-card px-4 py-3.5 flex items-center gap-3.5">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: var(--info-hours-icon-bg); color: var(--info-hours-icon);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.9" />
+              <path d="M12 7.5V12L15 13.8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-[11.5px] font-medium" style="color: var(--info-hours-label);">Режим работы</div>
+            <div id="uiWorkHours" class="text-[14px] font-bold mt-0.5 leading-tight" style="color: var(--info-hours-value);"></div>
+          </div>
+        </div>
+
+        <div id="phoneCard" class="info-phone-card px-4 py-3.5 flex items-center gap-3.5">
+          <a id="uiPhoneLink" href="#" class="flex items-center gap-3.5 flex-1 min-w-0 no-underline">
+            <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background: var(--icon-box-bg); color: var(--icon-box-color);">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none">
+                <path d="M5.5 4.5H9.2L10.8 8.7L8.5 10.2C9.65 12.55 11.45 14.35 13.8 15.5L15.3 13.2L19.5 14.8V18.5C19.5 19.6 18.6 20.5 17.5 20.5C10.32 20.5 4.5 14.68 4.5 7.5C4.5 6.4 5.4 4.5 5.5 4.5Z" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <div class="text-[11.5px] font-medium" style="color: var(--info-phone-label);">Телефон</div>
+              <div id="uiPhoneText" class="text-[14.5px] font-bold mt-0.5 truncate tracking-wide" style="color: var(--info-phone-value);"></div>
+            </div>
+          </a>
+          <button id="btnCopyPhone" type="button" title="Скопировать номер" class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0 cursor-pointer active:scale-90 transition-transform" style="background: var(--icon-box-bg); color: var(--card-title);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <rect x="9" y="9" width="11" height="11" rx="2.2" stroke="currentColor" stroke-width="1.9" />
+              <path d="M5 15H4.5C3.4 15 2.5 14.1 2.5 13V4.5C2.5 3.4 3.4 2.5 4.5 2.5H13C14.1 2.5 15 3.4 15 4.5V5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <footer class="mt-3 text-center">
+        <span class="text-[11px] font-semibold tracking-[0.14em] uppercase" style="color: var(--footer-brand);">NFC • Одно касание</span>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Модальное окно отзывов -->
+  <div id="reviewModal" class="sheet-backdrop fixed inset-0 z-40 bg-black/60 backdrop-blur-sm flex items-end justify-center" role="dialog" aria-modal="true">
+    <div class="sheet-panel w-full max-w-[430px] rounded-t-3xl px-5 pt-3 pb-7 shadow-2xl">
+      <div class="w-10 h-1 rounded-full bg-white/20 mx-auto mb-4"></div>
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <h2 class="text-[18px] font-bold leading-snug">Оцените ваш визит</h2>
+          <p class="text-[13px] mt-0.5" style="color: var(--modal-muted);">Выберите площадку — это займёт 30 секунд</p>
+        </div>
+        <button type="button" data-close-modal="reviewModal" class="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 text-white/75 cursor-pointer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+      <div class="mt-5 py-3.5 px-4 rounded-2xl text-center" style="background: var(--modal-surface);">
+        <div id="starRatingRow" class="flex items-center justify-center gap-2"></div>
+        <p id="starPromptText" class="text-[12.5px] font-medium mt-2" style="color: var(--accent-color);"></p>
+      </div>
+      <div id="reviewPlatformButtons" class="mt-4 flex flex-col gap-2.5"></div>
+    </div>
+  </div>
+
+  <!-- Модальное окно Wi-Fi -->
+  <div id="wifiModal" class="sheet-backdrop fixed inset-0 z-40 bg-black/60 backdrop-blur-sm flex items-end justify-center" role="dialog" aria-modal="true">
+    <div class="sheet-panel w-full max-w-[430px] rounded-t-3xl px-5 pt-3 pb-7 shadow-2xl">
+      <div class="w-10 h-1 rounded-full bg-white/20 mx-auto mb-4"></div>
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <h2 class="text-[18px] font-bold leading-snug">Гостевой Wi-Fi</h2>
+          <p class="text-[13px] mt-0.5" style="color: var(--modal-muted);">Отсканируйте QR-код или скопируйте пароль</p>
+        </div>
+        <button type="button" data-close-modal="wifiModal" class="w-8 h-8 rounded-full flex items-center justify-center bg-white/10 text-white/75 cursor-pointer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 6L18 18M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        </button>
+      </div>
+      <div class="mt-4 flex flex-col items-center">
+        <div class="p-3.5 bg-white rounded-2xl shadow-lg">
+          <div id="wifiQrBox" class="w-[164px] h-[164px] flex items-center justify-center"></div>
+        </div>
+      </div>
+      <div class="mt-4 rounded-2xl p-3.5 flex flex-col gap-2.5" style="background: var(--modal-surface);">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-[12px]" style="color: var(--modal-muted);">Сеть (SSID)</span>
+          <span id="modalWifiSsid" class="text-[14px] font-bold font-mono tracking-wide"></span>
+        </div>
+        <div class="h-px bg-white/10"></div>
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-[12px]" style="color: var(--modal-muted);">Пароль</span>
+          <span id="modalWifiPass" class="text-[14px] font-bold font-mono tracking-wide"></span>
+        </div>
+      </div>
+      <button id="btnCopyWifiPass" type="button" class="mt-4 w-full py-3.5 px-4 rounded-2xl font-bold text-[14.5px] flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98] transition-transform" style="background: var(--cta-bg); color: var(--cta-text);">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+          <rect x="9" y="9" width="11" height="11" rx="2.2" stroke="currentColor" stroke-width="2" />
+          <path d="M5 15H4.5C3.4 15 2.5 14.1 2.5 13V4.5C2.5 3.4 3.4 2.5 4.5 2.5H13C14.1 2.5 15 3.4 15 4.5V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+        <span>Скопировать пароль</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast уведомление -->
+  <div id="toastNotification" class="toast-pill fixed bottom-8 left-1/2 z-[60] px-4 py-2.5 rounded-full bg-[#181a20] text-white border border-white/15 shadow-2xl text-[13px] font-semibold flex items-center gap-2 whitespace-nowrap">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" class="text-emerald-400 shrink-0">
+      <path d="M5 13L9.5 17.5L19 7.5" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <span id="toastText">Скопировано!</span>
+  </div>
+
+  <script>
+    const state = {
+  "theme": "gold",
+  "businessName": "стоматология ",
+  "subtitle": "Спасибо за визит — будем рады видеть вас снова",
+  "statusTag": "Ресепшн • Открыто",
+  "promoText": "Подарок за ваш отзыв — покажите администратору",
+  "wifiSsid": "AURA_GUEST_5G",
+  "wifiPass": "aura2026vip",
+  "actionTitle": "Записаться",
+  "actionSubtitle": "Онлайн-запись",
+  "actionUrl": "https://yclients.com",
+  "yandexUrl": "https://yandex.ru/maps/213/moscow/?ll=37.594235%2C55.502748&mode=poi&poi%5Bpoint%5D=37.593277%2C55.503396&poi%5Buri%5D=ymapsbm1%3A%2F%2Forg%3Foid%3D217109115827%26yclid%3D8114038479344107519&tab=reviews&z=17.7",
+  "dgisUrl": "",
+  "telegramUrl": "",
+  "instagramUrl": "https://instagram.com/auralounge",
+  "whatsappUrl": "https://wa.me/79991234567",
+  "vkUrl": "https://vk.com/auralounge",
+  "websiteUrl": "https://auralounge.ru",
+  "workHours": "Ежедневно 09:00 – 21:00",
+  "phone": "79936301875"
+};
+    let toastTimer = null;
+    let selectedStars = 5;
+
+    const SOCIAL_ITEMS = [{"key":"yandexUrl","label":"Яндекс Карты","iconBg":"background: #FC3F1D;","svg":"\u003csvg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\">\n                \u003cpath d=\"M12 2.5C7.86 2.5 4.5 5.86 4.5 10C4.5 15.25 12 21.5 12 21.5C12 21.5 19.5 15.25 19.5 10C19.5 5.86 16.14 2.5 12 2.5Z\" fill=\"#FFFFFF\"/>\n                \u003ccircle cx=\"12\" cy=\"9.8\" r=\"2.8\" fill=\"#FC3F1D\"/>\n              \u003c/svg>"},{"key":"telegramUrl","label":"Наш Telegram","iconBg":"background: linear-gradient(135deg, #37AEE2 0%, #1E96C8 100%);","svg":"\u003csvg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\">\n                \u003cpath d=\"M20.66 4.62L3.36 11.29C2.18 11.76 2.19 12.42 3.14 12.71L7.58 14.1L17.86 7.62C18.35 7.32 18.8 7.49 18.43 7.82L10.1 15.34L9.8 19.86C10.25 19.86 10.45 19.65 10.7 19.41L12.86 17.31L17.35 20.63C18.18 21.09 18.78 20.85 18.99 19.86L21.95 5.91C22.25 4.7 21.48 4.15 20.66 4.62Z\" fill=\"#FFFFFF\"/>\n              \u003c/svg>"},{"key":"instagramUrl","label":"Мы в Instagram","iconBg":"background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);","svg":"\u003csvg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\">\n                \u003crect x=\"3.5\" y=\"3.5\" width=\"17\" height=\"17\" rx=\"5\" stroke=\"#FFFFFF\" stroke-width=\"2\"/>\n                \u003ccircle cx=\"12\" cy=\"12\" r=\"4\" stroke=\"#FFFFFF\" stroke-width=\"2\"/>\n                \u003ccircle cx=\"17.2\" cy=\"6.8\" r=\"1.2\" fill=\"#FFFFFF\"/>\n              \u003c/svg>"},{"key":"whatsappUrl","label":"Написать в WhatsApp","iconBg":"background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);","svg":"\u003csvg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\">\n                \u003cpath d=\"M12.04 3C7.07 3 3.04 7.03 3.04 12C3.04 13.77 3.55 15.42 4.44 16.82L3 21L7.32 19.6C8.69 20.41 10.31 20.88 12.04 20.88C17.01 20.88 21.04 16.85 21.04 11.88C21.04 6.91 17.01 3 12.04 3ZM16.92 15.53C16.71 16.12 15.72 16.66 15.22 16.73C14.77 16.8 14.2 16.83 13.57 16.63C13.19 16.51 12.69 16.34 12.06 16.07C9.42 14.93 7.7 12.24 7.57 12.07C7.44 11.9 6.5 10.65 6.5 9.35C6.5 8.05 7.18 7.42 7.42 7.16C7.66 6.9 7.95 6.84 8.12 6.84H8.62C8.78 6.84 9 6.78 9.21 7.29C9.43 7.82 9.95 9.12 10.02 9.25C10.09 9.38 10.13 9.54 10.04 9.71C9.95 9.88 9.91 9.99 9.78 10.14C9.65 10.29 9.5 10.48 9.39 10.59C9.26 10.72 9.12 10.86 9.28 11.13C9.44 11.4 9.99 12.3 10.8 13.02C11.84 13.95 12.71 14.24 12.98 14.37C13.25 14.5 13.41 14.48 13.57 14.29C13.73 14.1 14.26 13.48 14.44 13.21C14.62 12.94 14.81 12.98 15.06 13.07C15.31 13.16 16.63 13.81 16.9 13.95C17.17 14.09 17.35 14.16 17.42 14.27C17.49 14.38 17.49 14.94 16.92 15.53Z\" fill=\"#FFFFFF\"/>\n              \u003c/svg>"},{"key":"vkUrl","label":"Мы ВКонтакте","iconBg":"background: #0077FF;","svg":"\u003csvg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\">\n                \u003cpath d=\"M12.78 16.75C6.8 16.75 3.39 12.64 3.25 5.8H6.24C6.34 10.82 8.55 12.94 10.31 13.38V5.8H13.12V10.13C14.86 9.94 16.68 7.97 17.29 5.8H20.1C19.63 8.48 17.64 10.45 16.24 11.27C17.64 11.93 19.9 13.65 20.75 16.75H17.66C17 14.68 15.35 13.08 13.12 12.86V16.75H12.78Z\" fill=\"#FFFFFF\"/>\n              \u003c/svg>"},{"key":"websiteUrl","label":"Наш сайт","iconBg":"background: linear-gradient(135deg, #3b4254 0%, #252a36 100%);","svg":"\u003csvg width=\"19\" height=\"19\" viewBox=\"0 0 24 24\" fill=\"none\">\n                \u003ccircle cx=\"12\" cy=\"12\" r=\"8.5\" stroke=\"#FFFFFF\" stroke-width=\"1.8\"/>\n                \u003cellipse cx=\"12\" cy=\"12\" rx=\"3.8\" ry=\"8.5\" stroke=\"#FFFFFF\" stroke-width=\"1.8\"/>\n                \u003cpath d=\"M3.8 9.2H20.2M3.8 14.8H20.2\" stroke=\"#FFFFFF\" stroke-width=\"1.6\"/>\n              \u003c/svg>"}];
+
+    function escapeHtml(str) {
+      return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+    function normalizeUrl(raw) {
+      const val = (raw || '').trim();
+      if (!val) return '';
+      return /^(https?:\/\/|tel:|mailto:)/i.test(val) ? val : 'https://' + val;
+    }
+    function cleanTelHref(phone) {
+      const cleaned = (phone || '').replace(/[^\d+]/g, '');
+      return cleaned ? 'tel:' + cleaned : '#';
+    }
+    function showToast(msg) {
+      const t = document.getElementById('toastNotification');
+      document.getElementById('toastText').textContent = msg || 'Скопировано!';
+      t.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+    }
+    function copyTextToClipboard(text, msg) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (ok) { showToast(msg); return; }
+      } catch (e) {}
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => showToast(msg)).catch(() => showToast('Не удалось скопировать'));
+      }
+    }
+    function openModal(id) { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+    function escapeWifiField(val) { return String(val || '').replace(/([\\;,:"])/g, '\\$1'); }
+
+    function renderReviewStars() {
+      const row = document.getElementById('starRatingRow');
+      const prompt = document.getElementById('starPromptText');
+      row.innerHTML = '';
+      for (let i = 1; i <= 5; i++) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'p-1 transition-transform active:scale-90 cursor-pointer';
+        const filled = i <= selectedStars;
+        btn.innerHTML = '<svg width="30" height="30" viewBox="0 0 24 24" fill="' + (filled ? '#f6c453' : 'none') + '"><path d="M12 2.75L14.78 8.38L21 9.29L16.5 13.67L17.56 19.86L12 16.94L6.44 19.86L7.5 13.67L3 9.29L9.22 8.38L12 2.75Z" stroke="' + (filled ? '#f6c453' : 'rgba(255,255,255,0.28)') + '" stroke-width="1.8" stroke-linejoin="round" /></svg>';
+        btn.onclick = () => { selectedStars = i; renderReviewStars(); };
+        row.appendChild(btn);
+      }
+      prompt.textContent = selectedStars === 5
+        ? 'Отлично! Поделитесь впечатлением на карте — нам очень приятно'
+        : selectedStars === 4
+          ? 'Спасибо за высокую оценку! Будем рады вашему отзыву'
+          : 'Расскажите, что можно улучшить — мы читаем каждый отзыв';
+    }
+
+    function initPage() {
+      document.body.setAttribute('data-theme', state.theme === 'gold' ? 'gold' : 'light');
+      document.getElementById('uiBusinessName').textContent = state.businessName || '';
+      const subEl = document.getElementById('uiSubtitle');
+      subEl.textContent = state.subtitle || '';
+      subEl.classList.toggle('hidden', !state.subtitle.trim());
+      document.getElementById('uiStatusTag').textContent = state.statusTag || '';
+      document.getElementById('uiTagWrapper').classList.toggle('hidden', !state.statusTag.trim());
+
+      const hasYandex = Boolean(state.yandexUrl.trim());
+      const hasDgis = Boolean(state.dgisUrl.trim());
+      document.getElementById('btnReviewCard').classList.toggle('hidden', !hasYandex && !hasDgis);
+      document.getElementById('uiReviewSubtitle').textContent =
+        hasYandex && hasDgis ? 'Яндекс Карты и 2ГИС • Оцените визит' : hasYandex ? 'Яндекс Карты • Оцените визит' : '2ГИС • Оцените визит';
+
+      document.getElementById('uiPromoText').textContent = state.promoText || '';
+      document.getElementById('promoCard').classList.toggle('hidden', !state.promoText.trim());
+
+      const hasWifi = Boolean(state.wifiSsid.trim());
+      const hasAction = Boolean(state.actionUrl.trim());
+      const grid = document.getElementById('actionGrid');
+      document.getElementById('btnWifiCard').classList.toggle('hidden', !hasWifi);
+      document.getElementById('btnActionCard').classList.toggle('hidden', !hasAction);
+      grid.classList.toggle('hidden', !hasWifi && !hasAction);
+      grid.classList.toggle('grid-cols-2', hasWifi && hasAction);
+      grid.classList.toggle('grid-cols-1', (hasWifi && !hasAction) || (!hasWifi && hasAction));
+
+      document.getElementById('uiActionTitle').textContent = state.actionTitle || 'Записаться';
+      document.getElementById('uiActionSubtitle').textContent = state.actionSubtitle || 'Онлайн-запись';
+      document.getElementById('btnActionCard').href = normalizeUrl(state.actionUrl) || '#';
+
+      const stack = document.getElementById('socialLinksStack');
+      stack.innerHTML = '';
+      SOCIAL_ITEMS.forEach((item) => {
+        const href = normalizeUrl(state[item.key]);
+        if (!href) return;
+        const a = document.createElement('a');
+        a.href = href;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.className = 'nfc-card w-full px-3.5 py-3 flex items-center gap-3.5 no-underline';
+        a.innerHTML = '<div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm" style="' + item.iconBg + '">' + item.svg + '</div><span class="flex-1 text-[14.5px] font-semibold tracking-[0.01em]" style="color: var(--card-title);">' + escapeHtml(item.label) + '</span><svg class="shrink-0" width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="var(--card-chevron)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+        stack.appendChild(a);
+      });
+
+      document.getElementById('uiWorkHours').textContent = state.workHours || '';
+      document.getElementById('hoursCard').classList.toggle('hidden', !state.workHours.trim());
+      document.getElementById('uiPhoneText').textContent = state.phone || '';
+      document.getElementById('uiPhoneLink').href = cleanTelHref(state.phone);
+      document.getElementById('phoneCard').classList.toggle('hidden', !state.phone.trim());
+
+      document.getElementById('btnReviewCard').onclick = () => {
+        renderReviewStars();
+        const box = document.getElementById('reviewPlatformButtons');
+        box.innerHTML = '';
+        if (hasYandex) {
+          const a = document.createElement('a');
+          a.href = normalizeUrl(state.yandexUrl);
+          a.target = '_blank'; a.rel = 'noopener noreferrer';
+          a.className = 'w-full p-3.5 rounded-2xl flex items-center gap-3.5 no-underline transition-transform active:scale-[0.98]';
+          a.style.cssText = 'background: var(--modal-surface); border: 1px solid var(--modal-border); color: var(--modal-text);';
+          a.innerHTML = '<div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:#FC3F1D;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2.5C7.86 2.5 4.5 5.86 4.5 10C4.5 15.25 12 21.5 12 21.5C12 21.5 19.5 15.25 19.5 10C19.5 5.86 16.14 2.5 12 2.5Z" fill="#FFFFFF"/><circle cx="12" cy="9.8" r="2.8" fill="#FC3F1D"/></svg></div><div class="flex-1 text-left"><div class="text-[15px] font-bold leading-tight">Яндекс Карты</div><div class="text-[12px] mt-0.5" style="color: var(--modal-muted);">Открыть карточку организации</div></div><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="var(--card-chevron)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+          box.appendChild(a);
+        }
+        if (hasDgis) {
+          const a = document.createElement('a');
+          a.href = normalizeUrl(state.dgisUrl);
+          a.target = '_blank'; a.rel = 'noopener noreferrer';
+          a.className = 'w-full p-3.5 rounded-2xl flex items-center gap-3.5 no-underline transition-transform active:scale-[0.98]';
+          a.style.cssText = 'background: var(--modal-surface); border: 1px solid var(--modal-border); color: var(--modal-text);';
+          a.innerHTML = '<div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0" style="background:#24B24C;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3C7.58 3 4 6.4 4 10.6C4 14.3 6.8 17.1 11.4 20.6C11.76 20.87 12.24 20.87 12.6 20.6C17.2 17.1 20 14.3 20 10.6C20 6.4 16.42 3 12 3Z" fill="#FFFFFF"/><path d="M9.5 10.5H14.5M12 8V13" stroke="#24B24C" stroke-width="2.1" stroke-linecap="round"/></svg></div><div class="flex-1 text-left"><div class="text-[15px] font-bold leading-tight">2ГИС</div><div class="text-[12px] mt-0.5" style="color: var(--modal-muted);">Оставить отзыв в 2ГИС</div></div><svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M9 6L15 12L9 18" stroke="var(--card-chevron)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>';
+          box.appendChild(a);
+        }
+        openModal('reviewModal');
+      };
+
+      document.getElementById('btnWifiCard').onclick = () => {
+        const ssid = state.wifiSsid.trim();
+        const pass = state.wifiPass.trim();
+        document.getElementById('modalWifiSsid').textContent = ssid || '—';
+        document.getElementById('modalWifiPass').textContent = pass || 'Без пароля';
+        const qrBox = document.getElementById('wifiQrBox');
+        qrBox.innerHTML = '';
+        const wifiPayload = 'WIFI:T:' + (pass ? 'WPA' : 'nopass') + ';S:' + escapeWifiField(ssid) + ';P:' + escapeWifiField(pass) + ';;';
+        try {
+          if (typeof QRCode !== 'undefined') {
+            new QRCode(qrBox, { text: wifiPayload, width: 164, height: 164, colorDark: '#14161c', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+          } else { throw new Error('offline'); }
+        } catch (e) {
+          qrBox.innerHTML = '<div class="text-center p-3 text-slate-600 text-[11px] font-semibold">QR недоступен офлайн.<br/>Скопируйте пароль ниже.</div>';
+        }
+        openModal('wifiModal');
+      };
+
+      document.getElementById('btnCopyWifiPass').onclick = () => {
+        copyTextToClipboard(state.wifiPass.trim() || state.wifiSsid.trim(), 'Пароль скопирован!');
+      };
+      document.getElementById('btnCopyPhone').onclick = () => {
+        copyTextToClipboard(state.phone.trim(), 'Номер скопирован!');
+      };
+      document.querySelectorAll('[data-close-modal]').forEach((btn) => {
+        btn.onclick = () => closeModal(btn.getAttribute('data-close-modal'));
+      });
+      document.querySelectorAll('.sheet-backdrop').forEach((bg) => {
+        bg.addEventListener('click', (e) => { if (e.target === bg) bg.classList.remove('open'); });
+      });
+    }
+    window.addEventListener('DOMContentLoaded', initPage);
+  </script>
+</body>
+</html>
