@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>кочюратан</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      background-color: #0d0d0f;
+      background-image: radial-gradient(circle at 50% 0%, rgba(212,184,134,0.12), transparent 55%);
+      color: #f5f5f7;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 42px 18px 36px;
+    }
+    .wrap { width: 100%; max-width: 420px; display: flex; flex-direction: column; gap: 12px; }
+    .hero { text-align: center; display: flex; flex-direction: column; align-items: center; margin-bottom: 10px; }
+    .logo-box {
+      width: 64px; height: 64px; border-radius: 18px; background: rgba(255,255,255,0.038); border: 1px solid rgba(255,255,255,0.09);
+      display: flex; align-items: center; justify-content: center; color: #d4b886;
+      font-size: 26px; font-weight: 600; margin-bottom: 14px; overflow: hidden;
+    }
+    h1 { font-size: 21px; font-weight: 700; letter-spacing: 0.6px; margin-bottom: 6px; }
+    .subtitle { font-size: 14px; color: #9a9aa5; }
+    .card {
+      width: 100%; background: rgba(255,255,255,0.038); border: 1px solid rgba(255,255,255,0.09); border-radius: 18px;
+      padding: 15px 16px; display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; text-decoration: none; color: inherit; text-align: left; font-family: inherit;
+    }
+    .card-btn { cursor: pointer; }
+    .card:active { transform: scale(0.985); }
+    .card-primary { border-color: #d4b88655; background: linear-gradient(180deg, #d4b88616, rgba(255,255,255,0.038)); }
+    .card-left { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .icon-box {
+      width: 42px; height: 42px; border-radius: 12px; background: rgba(128,128,128,0.08);
+      border: 1px solid rgba(255,255,255,0.09); display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .icon-accent { background: #d4b8861e; border-color: #d4b88644; color: #d4b886; }
+    .card-title { font-size: 15px; font-weight: 600; }
+    .card-sub { font-size: 12.5px; color: #9a9aa5; margin-top: 2px; }
+    .chevron { font-size: 20px; color: #9a9aa5; }
+    .bonus-box {
+      display: flex; align-items: center; gap: 12px; padding: 13px 15px; border-radius: 16px;
+      background: #d4b88612; border: 1px solid #d4b88633; font-size: 13px; line-height: 1.4;
+    }
+    .mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .mini-grid.single { grid-template-columns: 1fr; }
+    .mini-card {
+      background: rgba(255,255,255,0.038); border: 1px solid rgba(255,255,255,0.09); border-radius: 15px; padding: 13px 14px;
+      text-align: center; text-decoration: none; color: #f5f5f7; font-size: 14px; font-weight: 500;
+    }
+    .footer-info { margin-top: 10px; text-align: center; font-size: 12px; color: #9a9aa5; line-height: 1.6; }
+
+    /* Модальные окна на той же странице */
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.68); backdrop-filter: blur(6px);
+      display: none; align-items: flex-end; justify-content: center; z-index: 99;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-sheet {
+      width: 100%; max-width: 440px; background: #16161a; border-top: 1px solid rgba(255,255,255,0.09);
+      border-radius: 24px 24px 0 0; padding: 18px 18px 28px; max-height: 85vh; overflow-y: auto;
+    }
+    .modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; font-size: 16px; }
+    .close-btn {
+      width: 30px; height: 30px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.038); color: #f5f5f7; cursor: pointer;
+    }
+    .srv-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 11px 0; border-top: 1px solid rgba(255,255,255,0.09); font-size: 14px; }
+    .srv-desc { font-size: 12.5px; color: #9a9aa5; margin-top: 3px; line-height: 1.35; }
+    .extra-text { font-size: 14px; line-height: 1.55; white-space: pre-line; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.09); }
+    .copy-btn {
+      margin-top: 12px; width: 100%; padding: 11px; border-radius: 12px; border: 1px solid #d4b88655;
+      background: #d4b88622; color: #d4b886; font-weight: 600; font-size: 14px; cursor: pointer;
+    }
+
+    /* Свайп-карусель услуг с фото */
+    .carousel {
+      display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+      scroll-behavior: smooth; gap: 12px; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .carousel::-webkit-scrollbar { display: none; }
+    .slide {
+      flex: 0 0 100%; scroll-snap-align: start; background: rgba(255,255,255,0.038);
+      border: 1px solid rgba(255,255,255,0.09); border-radius: 18px; overflow: hidden;
+    }
+    .slide-img { width: 100%; height: 220px; object-fit: cover; display: block; }
+    .slide-placeholder {
+      display: flex; align-items: center; justify-content: center; font-size: 36px;
+      color: #d4b886; background: #d4b88612;
+    }
+    .slide-info { padding: 14px 16px 16px; }
+    .slide-top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+    .slide-title { font-size: 16px; font-weight: 600; }
+    .slide-price { font-size: 15px; font-weight: 700; color: #d4b886; white-space: nowrap; }
+    .slide-desc { font-size: 13px; color: #9a9aa5; margin-top: 8px; line-height: 1.45; white-space: pre-line; }
+    .carousel-nav {
+      display: flex; align-items: center; justify-content: space-between; margin-top: 12px;
+    }
+    .nav-btn {
+      width: 38px; height: 38px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.038); color: #f5f5f7; font-size: 20px; cursor: pointer;
+    }
+    .slide-counter { font-size: 13px; color: #9a9aa5; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="logo-box"><span>К</span></div>
+      <h1>кочюратан</h1>
+      <p class="subtitle">Спасибо за визит — будем рады видеть вас снова</p>
+    </header>
+    
+        <a class="card card-primary" href="https://да" target="_blank" rel="noopener">
+          <div class="card-left">
+            <div class="icon-box icon-accent">★</div>
+            <div><div class="card-title">Оставить отзыв</div><div class="card-sub">Яндекс Карты • Оцените визит</div></div>
+          </div>
+          <span class="chevron">›</span>
+        </a>
+        <div class="bonus-box">
+          <span style="color:#d4b886;font-size:18px;">🎁</span>
+          <div class="bonus-text">да</div>
+        </div>
+        <a class="card" href="https://да" target="_blank" rel="noopener">
+          <div class="card-left">
+            <div class="icon-box">📍</div>
+            <div><div class="card-title">Отзыв в 2ГИС</div><div class="card-sub">Поделитесь впечатлением</div></div>
+          </div>
+          <span class="chevron">›</span>
+        </a>
+        <button type="button" class="card card-btn" onclick="openModal('modalWifi')">
+          <div class="card-left">
+            <div class="icon-box">📶</div>
+            <div><div class="card-title">Гостевой Wi-Fi</div><div class="card-sub">кочпантера 148867</div></div>
+          </div>
+          <span class="chevron">›</span>
+        </button>
+        <a class="card" href="https://да" target="_blank" rel="noopener">
+          <div class="card-left">
+            <div class="icon-box">📅</div>
+            <div><div class="card-title">Онлайн-запись / Сайт</div><div class="card-sub">Перейти на сайт</div></div>
+          </div>
+          <span class="chevron">›</span>
+        </a>
+    <footer class="footer-info"><div>77777777</div><div>Вот шаблон и</div></footer>
+  </main>
+  
+        <div class="modal-backdrop" id="modalWifi" onclick="if(event.target===this)closeModal('modalWifi')">
+          <div class="modal-sheet">
+            <div class="modal-head"><strong>Подключение к Wi-Fi</strong><button type="button" class="close-btn" onclick="closeModal('modalWifi')">✕</button></div>
+            <div class="modal-body">
+              <div class="srv-row"><span style="color:#9a9aa5">Сеть</span><strong>кочпантера 148867</strong></div>
+              
+              
+            </div>
+          </div>
+        </div>
+  <script>
+    function openModal(id) { document.getElementById(id).classList.add('open'); }
+    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+    function copyPass(btn) {
+      const text = btn.dataset.pass || '';
+      const done = () => {
+        const prev = btn.textContent;
+        btn.textContent = 'Пароль скопирован ✓';
+        setTimeout(() => btn.textContent = prev, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+      } else {
+        fallbackCopy(text, done);
+      }
+    }
+    function fallbackCopy(text, cb) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      cb();
+    }
+    function moveSlide(dir) {
+      const el = document.getElementById('srvCarousel');
+      if (!el) return;
+      el.scrollBy({ left: dir * el.clientWidth, behavior: 'smooth' });
+    }
+    function updateCounter() {
+      const el = document.getElementById('srvCarousel');
+      const cnt = document.getElementById('slideCounter');
+      if (!el || !cnt) return;
+      const total = el.children.length;
+      const idx = Math.min(total, Math.max(1, Math.round(el.scrollLeft / el.clientWidth) + 1));
+      cnt.textContent = idx + ' / ' + total;
+    }
+  </script>
+</body>
+</html>
