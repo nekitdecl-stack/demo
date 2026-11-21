@@ -135,6 +135,13 @@
           </div>
           <span class="chevron">›</span>
         </a>
+        <button type="button" class="card card-btn" onclick="openModal('modalServices')">
+          <div class="card-left">
+            <div class="icon-box icon-accent">☰</div>
+            <div><div class="card-title">Услуги и цены</div><div class="card-sub">Открыть прайс-лист</div></div>
+          </div>
+          <span class="chevron">›</span>
+        </button>
         <button type="button" class="card card-btn" onclick="openModal('modalWifi')">
           <div class="card-left">
             <div class="icon-box">📶</div>
@@ -152,6 +159,16 @@
     <footer class="footer-info"><div>77777777</div><div>Вот шаблон и</div></footer>
   </main>
   
+            <div class="modal-backdrop" id="modalServices" onclick="if(event.target===this)closeModal('modalServices')">
+              <div class="modal-sheet">
+                <div class="modal-head"><strong>Услуги и цены</strong><button type="button" class="close-btn" onclick="closeModal('modalServices')">✕</button></div>
+                <div class="modal-body">
+                <div class="srv-row">
+                  <div><div class="srv-name">минет-300</div></div>
+                  <strong style="color:#d4b886;white-space:nowrap;"></strong>
+                </div></div>
+              </div>
+            </div>
         <div class="modal-backdrop" id="modalWifi" onclick="if(event.target===this)closeModal('modalWifi')">
           <div class="modal-sheet">
             <div class="modal-head"><strong>Подключение к Wi-Fi</strong><button type="button" class="close-btn" onclick="closeModal('modalWifi')">✕</button></div>
